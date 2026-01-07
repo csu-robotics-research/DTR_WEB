@@ -1,4 +1,4 @@
-This is the repository that contains source code for [our website](https://github.com/nblkStudy/Prefix_N2M2).
+This is the repository that contains source code for [our website](https://wwxtw.github.io/DTR_WEB/).
 
 If you find our work useful please cite:
 ```
