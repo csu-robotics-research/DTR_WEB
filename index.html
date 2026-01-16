@@ -3,12 +3,11 @@
 
 <head>
   <meta charset="utf-8">
-  <meta name="description" content="Learning to Reinforce and Generalize Mobile Manipulation via Dynamics Imagination and Adaptive Experience
-    Selection.">
-  <meta name="keywords" content="Mobile Manipulation, World Model, Reinforce Learning">
+  <meta name="description"
+    content="Spatially Generalizable Mobile Manipulation via Adaptive Experience Selection and Dynamic Imagination.">
+  <meta name="keywords" content="Learning in robotics, Behavior and control, Motion and path planning">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Learning to Reinforce and Generalize Mobile Manipulation via Dynamics Imagination and Adaptive Experience
-    Selection</title>
+  <title>Spatially Generalizable Mobile Manipulation via Adaptive Experience Selection and Dynamic Imagination</title>
 
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
@@ -63,24 +62,26 @@
       <div class="container is-max-desktop">
         <div class="columns is-centered">
           <div class="column has-text-centered">
-            <h1 class="title is-1 publication-title"></span>Learning to Reinforce and Generalize Mobile Manipulation
-              via Dynamics Imagination and Adaptive Experience Selection</h1>
+            <h1 class="title is-1 publication-title"></span>Spatially Generalizable Mobile Manipulation via Adaptive
+              Experience Selection and Dynamic Imagination</h1>
             <div class="is-size-5 publication-authors">
               <span class="author-block">
-                LiangBai Liu,</span>
+                Ping Zhong,</span>
+              <span class="author-block">
+                Liangbai Liu,</span>
               <span class="author-block">
                 Tao Wu,</span>
               <span class="author-block">
                 Bolei Chen*,
               </span>
               <span class="author-block">
-                Ping Zhong*,
+                Jianxin Wang*,
               </span>
               <span class="author-block">
-                JiaZhi Xia,
+                Jiazhi Xia,
               </span>
               <span class="author-block">
-                JianXin Wang
+                Chaoxu Mu
               </span>
             </div>
 
@@ -143,21 +144,28 @@
           <div class="content has-text-justified">
             <p>
               <strong>M</strong>obile <strong>M</strong>anipulation (MM) involves long-horizon decision-making over
-              multi-stage compositions of heterogeneous skills, such as navigation and object manipulation. Despite
-              recent progress, existing MM methods still face two key limitations: (i) low sample efficiency, due to
-              ineffective use of redundant data generated during long-term MM interactions; and (ii) poor
-              generalization, as policies trained on specific tasks struggle to transfer to new tasks composed of the
-              same skills. In this paper, we address these challenges through <strong>A</strong>daptive
-              <strong>E</strong>xperience <strong>S</strong>election (AES) and model-based dynamics imagination. AES
-              selectively discards redundant experiences from long trajectories while retaining informative ones,
-              improving policy learning efficiency and mitigating catastrophic forgetting. Based on AES,
-              <strong>R</strong>ecurrent <strong>S</strong>tate-<strong>S</strong>pace <strong>M</strong>odel (RSSM) is
-              introduced to capture the coupled dynamics between the mobile base and the manipulator. RSSM is trained to
-              focus on key behaviors that affect MM success and to imagine the dynamics of future manipulations. Such
-              capabilities reinforce MM policies on the current task while enabling effective generalization to new
-              tasks without compromising performance. Comparative studies cross different scenes demonstrate that our
-              method significantly outperforms existing methods. Real-world experiments validate the feasibility and
-              practicality of our method.
+              multi-stage
+              compositions of
+              heterogeneous skills, such as navigation and picking up objects. Despite recent progress, existing MM
+              methods still face two key limitations: (i) low sample efficiency, due to ineffective use of redundant
+              data generated during long-term MM interactions; and (ii) poor spatial generalization, as policies
+              trained
+              on specific tasks struggle to transfer to new spatial layouts without additional training. In this
+              paper,
+              we address these challenges through <strong>A</strong>daptive <strong>E</strong>xperience
+              <strong>S</strong>election (AES) and model-based dynamic
+              imagination. In particular, AES makes MM agents pay more attention to critical experience fragments in
+              long trajectories that affect task success, improving skill chain learning and mitigating skill
+              forgetting. Based on AES, a <strong>R</strong>ecurrent <strong>S</strong>tate-<strong>S</strong>pace
+              <strong>M</strong>odel (RSSM) is introduced for
+              <strong>M</strong>odel-<strong>P</strong>redictive
+              <strong>F</strong>orward
+              <strong>P</strong>lanning (MPFP) by capturing the coupled dynamics between the mobile base and the
+              manipulator and
+              imagining the dynamics of future manipulations. RSSM-based MPFP can reinforce MM skill learning on the
+              current task while enabling effective generalization to new spatial layouts. Comparative studies across
+              different experimental configurations demonstrate that our method significantly outperforms existing MM
+              policies. Real-world experiments further validate the feasibility and practicality of our method.
             </p>
           </div>
         </div>
@@ -165,16 +173,18 @@
       <!--/ Abstract. -->
 
       <!-- Method. -->
+      <!-- todo 换图 -->
       <div class="container is-max-desktop">
         <div class="columns is-centered has-text-centered">
           <div class="column is-full">
             <h2 class="title is-3">Method</h2>
             <div class="content has-text-justified">
               <p>
-                Our method maps raw inputs to latent states to facilitate efficient World Model learning. By
-                incorporating a curated sampling mechanism, we guide the World Model toward task-relevant trajectories,
-                ensuring robust representation learning. Consequently, at test time, the policy can evaluate potential
-                futures through model-based imagination, leading to more precise and informed decision-making.
+                The proposed method encodes raw observations into a latent space to streamline the training of the
+                Recurrent State-Space Model (RSSM). By integrating an Adaptive Experience Selection (AES) mechanism, the
+                framework prioritizes task-critical information, thereby ensuring the learning of robust
+                representations. During inference, the policy network leverages RSSM-based MPFP to simulate prospective
+                trajectories, facilitating more precise and informed decision-making.
               </p>
               <img src="./static/images/main_pipeline.jpg" alt="Pipeline" style="width: 100%; height: auto;">
             </div>
@@ -194,95 +204,73 @@
         <div class="column is-full">
           <div class="content has-text-justified">
             <p class="has-text-centered">
-              <strong>Table 1:</strong> Comparative evaluation against established approaches across a variety of
-              training scenarios.
+              <strong>Table 1:</strong> Comparative studies are conducted in the cross-room experimental configuration
+              to demonstrate the superiority of our method.
               <strong>Bold</strong> indicates the best performance, and <u>underline</u> indicates the second best.
             </p>
-            <div class="table-container">
+            <div class="table-container" style="max-width: 500px; margin: 0 auto 1.5rem auto;">
               <table class="table is-bordered is-striped is-hoverable is-fullwidth has-text-centered is-narrow">
                 <thead>
                   <tr>
-                    <th rowspan="2" class="is-vcentered">Method <span class="is-size-7">(Venue)</span></th>
-                    <th colspan="3">Cross-room</th>
-                    <th colspan="3">Domestic</th>
-                    <th colspan="3">Warehouse</th>
-                    <th colspan="3">Dynamic</th>
+                    <th rowspan="2" style="vertical-align: middle;">Method</th>
+                    <th colspan="4">Cross-room</th>
                   </tr>
                   <tr>
-                    <th>AIKF↓</th>
-                    <th>ABC↓</th>
-                    <th>TCR↑</th>
-                    <th>AIKF↓</th>
-                    <th>ABC↓</th>
-                    <th>TCR↑</th>
-                    <th>AIKF↓</th>
-                    <th>ABC↓</th>
-                    <th>TCR↑</th>
-                    <th>AIKF↓</th>
-                    <th>ABC↓</th>
-                    <th>TCR↑</th>
+                    <th>AIKF&darr;</th>
+                    <th>ABC&darr;</th>
+                    <th>TCR&uarr;</th>
+                    <th>PSR&uarr;</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr>
-                    <td class="has-text-left">N<sup>2</sup>M<sup>2</sup></td>
+                    <td>End-to-End MM</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>0</td>
+                    <td>0</td>
+                  </tr>
+                  <tr>
+                    <td>BHyRL</td>
+                    <td>12.1</td>
+                    <td>2.8</td>
+                    <td>21</td>
+                    <td>19</td>
+                  </tr>
+                  <tr>
+                    <td>N<sup>2</sup>M<sup>2</sup></td>
                     <td>11.3</td>
                     <td>2.2</td>
                     <td>29</td>
-                    <td>11.0</td>
-                    <td>2.3</td>
-                    <td>32</td>
-                    <td><u>5.2</u></td>
-                    <td>0.5</td>
-                    <td>68</td>
-                    <td>16.5</td>
-                    <td>6.4</td>
-                    <td>12</td>
+                    <td>17</td>
                   </tr>
                   <tr>
-                    <td class="has-text-left">DreamerV3</td>
+                    <td>Dreamer V3</td>
                     <td><u>8.1</u></td>
-                    <td><u>2.0</u></td>
-                    <td><u>54</u></td>
-                    <td><u>9.3</u></td>
-                    <td>1.6</td>
-                    <td><u>64</u></td>
-                    <td>5.3</td>
-                    <td><strong>0.0</strong></td>
-                    <td><u>80</u></td>
-                    <td>9.0</td>
-                    <td><strong>3.1</strong></td>
-                    <td><u>44</u></td>
+                    <td>2.0</td>
+                    <td>54</td>
+                    <td>40</td>
                   </tr>
                   <tr>
-                    <td class="has-text-left">TDMPC2</td>
+                    <td>TD-MPC2</td>
                     <td>9.9</td>
                     <td><strong>1.2</strong></td>
                     <td>46</td>
-                    <td>10.7</td>
-                    <td><u>1.5</u></td>
-                    <td>56</td>
-                    <td>6.0</td>
-                    <td><u>0.4</u></td>
-                    <td>74</td>
-                    <td><u>8.9</u></td>
-                    <td><u>5.0</u></td>
-                    <td>40</td>
+                    <td><u>41</u></td>
+                  </tr>
+                  <tr>
+                    <td>AuxDistill</td>
+                    <td>8.8</td>
+                    <td><u>1.3</u></td>
+                    <td><u>57</u></td>
+                    <td>42</td>
                   </tr>
                   <tr style="background-color: #e8e8e8;">
-                    <td class="has-text-left"><strong>Ours</strong></td>
+                    <td><strong>Ours</strong></td>
                     <td><strong>4.1</strong></td>
-                    <td><u>2.0</u></td>
+                    <td>2.0</td>
                     <td><strong>81</strong></td>
-                    <td><strong>3.6</strong></td>
-                    <td><strong>0.1</strong></td>
-                    <td><strong>90</strong></td>
-                    <td><strong>3.0</strong></td>
-                    <td><strong>0.0</strong></td>
-                    <td><strong>96</strong></td>
-                    <td><strong>5.8</strong></td>
-                    <td>5.6</td>
-                    <td><strong>58</strong></td>
+                    <td><strong>54</strong></td>
                   </tr>
                 </tbody>
               </table>
@@ -291,7 +279,8 @@
               <i>Note:</i>
               <strong>AIKF</strong>: Average IK solver failure rate;
               <strong>ABC</strong>: Average base collision rate;
-              <strong>TCR</strong>: Target capture success rate.
+              <strong>TCR</strong>: Target completion rate;
+              <strong>PSR</strong>: Perfect success rate.
               Symbols <strong>↓</strong> and <strong>↑</strong> indicate that lower or higher values are better,
               respectively.
             </p>
@@ -301,81 +290,212 @@
       <br>
       <!-- Table 2 -->
       <div class="columns is-centered has-text-centered">
-        <div class="column is-four-fifths">
+        <div class="column is-full">
           <div class="content has-text-justified">
             <p class="has-text-centered">
-              <strong>Table 2:</strong> Zero-shot generalization performance of models trained exclusively in Cross-Room
-              and evaluated across unseen environments.
+              <strong>Table 2:</strong> Extensive comparative experiments across three additional distinct scenarios to
+              provide a more comprehensive demonstration of our model's superior performance in handling diverse
+              environmental complexities.
             </p>
             <div class="table-container">
               <table class="table is-bordered is-striped is-hoverable is-fullwidth has-text-centered is-narrow">
                 <thead>
                   <tr>
-                    <th rowspan="2" class="is-vcentered">Method <span class="is-size-7">(Venue)</span></th>
-                    <th colspan="3">Domestic</th>
-                    <th colspan="3">Warehouse</th>
-                    <th colspan="3">Dynamic</th>
+                    <th rowspan="2" style="vertical-align: middle;">Method</th>
+                    <th colspan="4">Home-scene</th>
+                    <th colspan="4">Warehouse</th>
+                    <th colspan="4">Dynamic-scene</th>
                   </tr>
                   <tr>
-                    <th>AIKF↓</th>
-                    <th>ABC↓</th>
-                    <th>TCR↑</th>
-                    <th>AIKF↓</th>
-                    <th>ABC↓</th>
-                    <th>TCR↑</th>
-                    <th>AIKF↓</th>
-                    <th>ABC↓</th>
-                    <th>TCR↑</th>
+                    <th>AIKF&darr;</th>
+                    <th>ABC&darr;</th>
+                    <th>TCR&uarr;</th>
+                    <th>PSR&uarr;</th>
+                    <th>AIKF&darr;</th>
+                    <th>ABC&darr;</th>
+                    <th>TCR&uarr;</th>
+                    <th>PSR&uarr;</th>
+                    <th>AIKF&darr;</th>
+                    <th>ABC&darr;</th>
+                    <th>TCR&uarr;</th>
+                    <th>PSR&uarr;</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr>
-                    <td class="has-text-left">N<sup>2</sup>M<sup>2</sup></td>
+                    <td>N<sup>2</sup>M<sup>2</sup></td>
+                    <td>11.0</td>
+                    <td>2.3</td>
+                    <td>32</td>
+                    <td>18</td>
+                    <td>7.1</td>
+                    <td><strong>0.0</strong></td>
+                    <td>68</td>
+                    <td>56</td>
+                    <td>16.5</td>
+                    <td>6.4</td>
+                    <td>12</td>
+                    <td>3</td>
+                  </tr>
+                  <tr>
+                    <td>Dreamer V3</td>
+                    <td><u>9.3</u></td>
+                    <td><u>1.6</u></td>
+                    <td><u>64</u></td>
+                    <td><u>45</u></td>
+                    <td><u>5.3</u></td>
+                    <td><u>0.4</u></td>
+                    <td><u>80</u></td>
+                    <td><u>61</u></td>
+                    <td><u>9.0</u></td>
+                    <td><strong>3.1</strong></td>
+                    <td><u>44</u></td>
+                    <td><strong>40</strong></td>
+                  </tr>
+                  <tr>
+                    <td>TD-MPC2</td>
+                    <td>10.7</td>
+                    <td>1.5</td>
+                    <td>56</td>
+                    <td>32</td>
+                    <td>6.0</td>
+                    <td>0.5</td>
+                    <td>74</td>
+                    <td>60</td>
+                    <td><u>8.9</u></td>
+                    <td><u>5.0</u></td>
+                    <td>40</td>
+                    <td><u>35</u></td>
+                  </tr>
+                  <tr style="background-color: #e8e8e8;">
+                    <td><strong>Ours</strong></td>
+                    <td><strong>3.6</strong></td>
+                    <td><strong>0.1</strong></td>
+                    <td><strong>90</strong></td>
+                    <td><strong>66</strong></td>
+                    <td><strong>3.0</strong></td>
+                    <td><strong>0.0</strong></td>
+                    <td><strong>96</strong></td>
+                    <td><strong>76</strong></td>
+                    <td><strong>5.8</strong></td>
+                    <td>5.6</td>
+                    <td><strong>58</strong></td>
+                    <td>39</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      <br>
+      <!-- Table 3 -->
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-full">
+          <div class="content has-text-justified">
+            <p class="has-text-centered">
+              <strong>Table 3:</strong> Zero-shot generalization performance of models trained exclusively in Cross-Room
+              and evaluated across unseen environments without additional training.
+            </p>
+            <div class="table-container">
+              <table class="table is-bordered is-striped is-hoverable is-fullwidth has-text-centered is-narrow">
+                <thead>
+                  <tr>
+                    <th rowspan="2" style="vertical-align: middle;">Method</th>
+                    <th colspan="4">Home-scene</th>
+                    <th colspan="4">Warehouse</th>
+                    <th colspan="4">Dynamic-scene</th>
+                  </tr>
+                  <tr>
+                    <th>AIKF&darr;</th>
+                    <th>ABC&darr;</th>
+                    <th>TCR&uarr;</th>
+                    <th>PSR&uarr;</th>
+                    <th>AIKF&darr;</th>
+                    <th>ABC&darr;</th>
+                    <th>TCR&uarr;</th>
+                    <th>PSR&uarr;</th>
+                    <th>AIKF&darr;</th>
+                    <th>ABC&darr;</th>
+                    <th>TCR&uarr;</th>
+                    <th>PSR&uarr;</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>N<sup>2</sup>M<sup>2</sup></td>
                     <td>15.1</td>
                     <td>1.4</td>
                     <td>29</td>
+                    <td>15</td>
                     <td>14.3</td>
                     <td><strong>0.0</strong></td>
                     <td>19</td>
+                    <td>11</td>
                     <td>18.7</td>
                     <td><u>4.1</u></td>
                     <td>10</td>
+                    <td>5</td>
                   </tr>
                   <tr>
-                    <td class="has-text-left">DreamerV3</span></td>
+                    <td>Dreamer V3</td>
                     <td><u>9.7</u></td>
                     <td>1.9</td>
-                    <td><u>44</u></td>
+                    <td>44</td>
+                    <td><u>40</u></td>
                     <td><u>7.2</u></td>
                     <td><strong>0.0</strong></td>
                     <td><u>45</u></td>
-                    <td>9.9</td>
+                    <td>39</td>
+                    <td><u>9.9</u></td>
                     <td><strong>3.7</strong></td>
                     <td><u>39</u></td>
+                    <td><strong>33</strong></td>
                   </tr>
                   <tr>
-                    <td class="has-text-left">TDMPC2</td>
+                    <td>TD-MPC2</td>
                     <td>13.8</td>
-                    <td><u>0.7</u></td>
+                    <td>0.7</td>
                     <td>32</td>
+                    <td>16</td>
                     <td>9.5</td>
                     <td><u>2.2</u></td>
                     <td>40</td>
+                    <td>32</td>
                     <td><u>9.2</u></td>
                     <td>5.5</td>
                     <td>35</td>
+                    <td>25</td>
+                  </tr>
+                  <tr>
+                    <td>Ours w/o MPFP</td>
+                    <td>12.3</td>
+                    <td><u>0.6</u></td>
+                    <td><u>46</u></td>
+                    <td>22</td>
+                    <td>8.6</td>
+                    <td><strong>0.0</strong></td>
+                    <td><u>45</u></td>
+                    <td><u>41</u></td>
+                    <td>10.5</td>
+                    <td>4.4</td>
+                    <td>35</td>
+                    <td>29</td>
                   </tr>
                   <tr style="background-color: #e8e8e8;">
-                    <td class="has-text-left"><strong>Ours</strong></td>
+                    <td><strong>Ours</strong></td>
                     <td><strong>8.7</strong></td>
                     <td><strong>0.5</strong></td>
                     <td><strong>61</strong></td>
-                    <td><strong>3.3</strong></td>
+                    <td><strong>42</strong></td>
+                    <td><strong>4.3</strong></td>
                     <td><strong>0.0</strong></td>
                     <td><strong>70</strong></td>
+                    <td><strong>60</strong></td>
                     <td><strong>6.3</strong></td>
                     <td>6.9</td>
                     <td><strong>45</strong></td>
+                    <td><u>32</u></td>
                   </tr>
                 </tbody>
               </table>
@@ -405,9 +525,9 @@
   <section class="section" id="BibTeX">
     <div class="container is-max-desktop content">
       <h2 class="title">BibTeX</h2>
-      <pre><code>@article{liu2026DTR,
-  author    = {LiangBai Liu, Tao Wu, Bolei Chen, Ping Zhong, JiaZhi Xia, JianXin Wang},
-  title     = {Learning to Reinforce and Generalize Mobile Manipulation via Dynamics Imagination and Adaptive Experience Selection},
+      <pre><code>@article{xxx,
+  author    = {Zhong Ping, Liangbai Liu, Tao Wu, Bolei Chen, Jianxin Wang, JiaZhi Xia, Chaoxu Mu},
+  title     = {Spatially Generalizable Mobile Manipulation via Adaptive Experience Selection and Dynamic Imagination},
   journal   = {Proceedings of the XXX},
   year      = {2026},
 }</code></pre>
